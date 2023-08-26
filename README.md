@@ -19,17 +19,17 @@ Evaluating the results:
 For this, look for matching filenames in both folders in the format 'res + test number'
 - Check the content of the performed test in the 'test_list' folder (test + test number + .sh)
 - At the time of writing, this program has not been tested against final minishell projects.
-Please, see this program as an auxiliar program and not as a means of final testing
+Please, see this program as an auxiliar program and not as a means of final testing.
 
 
 Further usage:
-- You can add more tests by adding new lines to the "tests.txt" file within the 'minitester' folder
+- You can add more tests by adding new lines to the "tests.txt" file within the 'minitester' folder.
   Please add them before the last line of the file (containing the 'exit\' sequence)
 - New tests function properly in one-line format. At the time of writing multiline test format has not been addressed
 
 
 Final considerations:
-- In cases where the result involves a 'command not found' statement, a validation was added checking for this very statement in both files
+- In cases where the result involves a 'command not found' statement, a validation was added checking for this very statement in both files.
 Since 'command not found' statements can be hard to match in between linux distributions and this program uses 'diff' statements, this validation was added.
 This can change the results of some of the tests in cases where more the a failed command is tested.
 This extra validation can be removed by deleting the statements and conditions pertaining to the 'dif_bash' and 'dif_shell' variables in the file 'veridict.sh'.
