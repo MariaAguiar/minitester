@@ -16,7 +16,7 @@ Evaluating the results:
 - Check individual tests by comparing the output of the files within the 'out_bash' and 'out_minishell' folders
 For this, look for matching filenames in both folders in the format 'res + test number'
 - Check the content of the performed test in the 'test_list' folder (test + test number + .sh)
-- At the time of writing, this program has not been tested against final minishell projects
+- At the time of writing, this program has not been tested against final minishell projects.
 Please, see this program as an auxiliar program and not as a means of final testing
 
 Further usage:
