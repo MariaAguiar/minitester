@@ -1,0 +1,9 @@
+set input_file "tests.txt"
+set fh [open $input_file r]
+spawn ../minishell
+while {[gets $fh line] != -1} {
+    expect "$ "
+    send "$line\n"
+}
+close $fh
+
