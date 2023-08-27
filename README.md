@@ -31,7 +31,7 @@ Further usage:
 Final considerations:
 - In cases where the result involves a 'command not found' statement, a validation was added checking for this very statement in both files.
 Since 'command not found' statements can be hard to match in between linux distributions and this program uses 'diff' statements, this validation was added.
-This can change the results of some of the tests in cases where more the a failed command is tested.
+This can change the results of some of the tests in cases where more then a failed command is tested.
 This extra validation can be removed by deleting the statements and conditions pertaining to the 'dif_bash' and 'dif_shell' variables in the file 'veridict.sh'.
 
 Thanks!
