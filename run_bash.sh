@@ -10,11 +10,10 @@ do_tests()
 		local test='test_list/test'
 		test+="$n"
 		test+=".sh"
-		local res='res'
+		local res="${directory}/res"
 		res+="$n"
 		chmod +rwx $test;
 		./${test} >> $res 2>&1;
-		mv $res $directory
 		n=$((n+1))
         fi
     done < $filename

@@ -4,8 +4,9 @@
 [ -e out_minishell ] && rm -rf out_minishell
 [ -e test_list ] && rm -rf test_list
 
+touch res.txt
 bash ./gen_tests.sh
 bash ./run_bash.sh
-expect minishell.exp | grep -ve '[$]' > res.txt
+expect minishell.exp > res.txt
 bash ./veridict.sh
 exit;

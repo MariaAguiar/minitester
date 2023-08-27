@@ -12,28 +12,26 @@ RESET='\033[0m'
 move_tests()
 {
     i=0
-    local prefix1="[?2004h$"
-    local prefix2="[?2004l"
     local suffix="res"
     res="${directory}/res"
     while read -r line; do
-    	if [[ "${#line}" > 0 ]]; then
-		if [[ "${line}" = "$prefix1"* ]]; then
-		    i=$((i+1))
-		    res="${directory}/res"
-		    res+="$i"
-		    touch $res
-		elif [[ "${line}" = "$prefix2"* ]]; then
-		    i=$((i+1))
-		    res="${directory}/res"
-		    res+="$i"
-		    touch $res
-		    tline=$(printf "%s" "${line}" | sed 's/\x1b\[?2004l//g')
-		    tline2=${tline:1}
-		   echo "${tline2:0:-1}" >> $res 2>&1;
-		elif [[ "${res: -3}" != "$suffix" ]]; then
-		    echo "${line:0:-1}" >> $res 2>&1;
+		local nline
+		if [[ "${line:0:8}" = "$prefix1"* ]]; then
+			nline=${line:9:-1}
+		elif [[ "${line:0:8}" = "$prefix2"* ]]; then
+			nline=${line:9:-1}
+		else
+			nline=${line:0:-1}
 		fi
+    	if [[ "${#nline}" > 0 ]]; then
+			if [[ "${line}" = *"$ "* ]]; then
+				i=$((i+1))
+				res="${directory}/res"
+				res+="$i"
+				touch $res
+			elif [[ "${res: -3}" != "$suffix" ]]; then
+				echo "${nline}" >> $res 2>&1;
+			fi
         fi
     done < $filename
 }
@@ -71,6 +69,8 @@ directory='out_minishell'
 mkdir $directory
 chmod +rwx $directory;
 chmod +rwx out_bash;
+prefix1="[?2004h"
+prefix2="[?2004l"
 move_tests;
 veridict;
 rm $filename
