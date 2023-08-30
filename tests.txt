@@ -1,6 +1,84 @@
-echo 1 > test1.txt
-echo 3 > test1.txt
-echo 2
-ls -a
-pwd
+cd ../../../../../..
+cd /home/user42/
+cd $HOME/Bureau
+unset HOME
+export HOME= ; cd
+cd too many arguments
+cd ./path_not_found
+cd -
+cd home/.. com CDPATH definido como /
+cd home/dir com CDPATH definido como /
+CD. com CDPATH definido
+CD .. com CDPATH definido
+env então exporte então env
+cd random_cmd ; echo $?
+./file_that_is_not_an_executable
+cat bla
+file_name
+not_cmd
+export test=a ; echo $test
+ls bonjour ; echo $?
+export var=a ; export $var=test ; echo $var $a
+export $var=test
+export la même variable
+export var então export var = teste
+export "" test=a
+$SHLVL
+""
+echo "\s" ; echo "\\s"
+echo "12\""
+echo "bip | bip ><"
+echo $USER$var\$USER$USER\$USERtest$USER
+echo bonjour \; ls
+$LESS$VAR
+..
+echo '"abc"'
+echo "'abc'"
+echo "" bonjour
+echo\ a
+export ""  and unset ""
+export "test=ici"=coucou ; echo $test
+export var="cat Makefile | grep >" ; echo $var
+cat Makefile | grep pr | head -n 5 | cd file_not_exit
+cat Makefile | grep pr | head -n 5 | hello
+ls | exit
+> test | echo blabla; rm test
+>a ls >b >>c >d
+>a ls <machin >>c >d     avec machin n'exite pas
+>file
+cat < test
+echo 2 > out1 >> out2
+echo 2 >> out1 > out2
+echo bonjour > "test 1"
+echo test > file test1
+not_cmd bonjour > salut
+ctrl-\
+ctrl-C
+export var="  truc"; echo $var
+export var="truc  "; echo $var | cat -e
+echo "$tests""Makefile"
+echo "$tests"Makefile
+echo "$tests" "Makefile"
+echo $var bonjour
+export $var
+export test=123\" ; echo $test
+export test=123\\ ; echo $test
+export test=123\' ; echo $test ; echo $test
+export test="  foo    bar  " ; echo $test
+export test="  foo    bar  " ; echo ab$test
+export test="  foo    bar  " ; echo "ab"$test
+export test=" foo   bar " ; echo ab"$test" | cat -e
+export test=" foo   bar " ; echo "$test"
+export test=" foo   bar " ; echo ""$test""
+export test=" foo   bar " ; echo """$test"""
+export var= s\ -la ; l$var
+export var=at ; c$var Makefile
+export loop='bonjour$loop' ; echo $loop
+|
+echo bonjour > $test
+unset PATH ; ls
+unset "" test
+unset PWD
+unset var
+/bin/echo bonjour
 exit\
