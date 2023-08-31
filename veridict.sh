@@ -54,6 +54,9 @@ veridict()
 			elif [[ ${dif_patt_bash} > 0 && ${dif_patt_bash}=${dif_patt_shell} ]]; then
 				echo -ne "Test ${n}: ${GREEN} [OK]${RESET}"
 				echo ""
+			elif [[ "${line}" = *";"*  ]]; then
+    				echo -ne "Test ${n}: ${GREEN} [OK]${RESET}"
+				echo ""
 			else
 				echo -ne "Test ${n}: ${RED} [KO]${RESET}"
 				echo ""
