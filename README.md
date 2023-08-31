@@ -10,7 +10,6 @@ sudo apt install expect
 
 Instructions:
 - Place the 'minitester' folder next to your minishell executable
-- Copy your minishell executable to the 'minitester' folder
 - Enter the 'minitester' folder and run:
 bash ./minitester.sh
 
