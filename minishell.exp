@@ -7,3 +7,4 @@ while {[gets $fh line] != -1} {
     expect "$ "
 }
 close $fh
+exit ;

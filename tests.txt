@@ -20,7 +20,7 @@ export test=a ; echo $test
 ls bonjour ; echo $?
 export var=a ; export $var=test ; echo $var $a
 export $var=test
-export la même variable
+export $var=test ; export $var
 export var então export var = teste
 export "" test=a
 $SHLVL

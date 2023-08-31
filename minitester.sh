@@ -11,6 +11,9 @@ n=1
 
 clean_test()
 {
+    dir=$1
+    mini=$2
+    touch "${dir}/${mini}"
     while read -r line; do
 		line=$(echo "$line" | tr -cd '[:print:]')
 		while [[ "${line}" = "$prefix2"* || "${line}" = "$prefix1"* ]]; do
@@ -25,9 +28,9 @@ clean_test()
 			if [[ "${line}" = *"spawn"* ]]; then
 				continue
 			elif [[ $beg == "$" ]]; then
-				touch out_minishell/${mini}
+				touch "${dir}/${mini}"
 			else
-				echo "${line}" >> out_minishell/${mini} 2>&1;
+				echo "${line}" >> "${dir}/${mini}" 2>&1;
 			fi
 		fi
     done < $mini
@@ -39,13 +42,18 @@ do_tests()
 	chmod +rwx "${test}${n}";
 	while [ -e "${test}${n}" ]; do
 		test="test_list/test"
-		local bash="out_bash/res"
+		local bash="res"
 		bash+="$n"
 		mini="res"
 		mini+="$n"
-		[ -e "${test}${n}" ] && ( bash ./"${test}${n}" > $bash 2>&1 );
-		[ -e "${test}${n}" ] && expect minishell.exp "${test}${n}" > $mini 2>&1;
-		clean_test
+		status=-1
+		bash ./"${test}${n}" > $bash 2>/dev/null
+		if [ $(cat $bash | wc -c) -eq 0 ]; then 
+			expect minishell.exp "${test}${n}" > "$bash" 
+		fi
+		clean_test "out_bash" "$bash"
+		expect minishell.exp "${test}${n}" > $mini 2>&1;
+		clean_test "out_minishell" "$mini"
 		i=$((i+1))
 		n=$((n+1))
 		[ -e "${mini}" ] && rm "${mini}"
