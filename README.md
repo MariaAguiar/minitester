@@ -1,5 +1,5 @@
 # minitester
-Tester for the 42 Common Core 'minishell' project | Made to help during the development stage | On going
+Output tester for the 42 Common Core 'minishell' project | Made to help during the development stage | On going
 
 Prerequisites:
 - Have 'expect' installed in your linux distribution. If not, run:
@@ -29,9 +29,8 @@ Further usage:
 
 
 Final considerations:
-- In cases where the results involve stderr messages, several validations were added checking for equivalent statements in both files.
-Since these kinds of statements can be hard to match in between shell terminals and linux distributions - plus this program uses 'diff' statements, these validations were added.
-These can change the results of some of the tests in cases where more the a failed command is tested.
-Such extra validations can be removed by deleting the statements and conditions pertaining to the 'dif_*_bash' and 'dif_*_shell' variables in the file 'veridict.sh'.
+- In cases where the results involve stderr messages, preference was given to expect's messaging system over bash's.
+This was done, both due to expect's constrints, and to allow results to match up in diff statements whenever standard errors are involved.
+This also means that you won't be able to compare your shell's own messaging system against the original bash when running this minitester.
 
 Thanks!
