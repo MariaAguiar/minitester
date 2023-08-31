@@ -5,11 +5,12 @@ Prerequisites:
 - Have 'expect' installed in your linux distribution. If not, run:
 sudo apt install expect
 - Your shell executable must have functional prompt capturing and processing capabilities
-- Your shell must be named 'minishell' and have a realine prompt containing the sequence '$ ' (dollar sign + space)
+- Your shell must be named 'minishell' and have a readline prompt containing the sequence '$ ' (dollar sign + space)
 
 
 Instructions:
 - Place the 'minitester' folder next to your minishell executable
+- Copy your minishell executable to the 'minitester' folder
 - Enter the 'minitester' folder and run:
 bash ./minitester.sh
 
@@ -29,9 +30,9 @@ Further usage:
 
 
 Final considerations:
-- In cases where the result involves a 'command not found' statement, a validation was added checking for this very statement in both files.
-Since 'command not found' statements can be hard to match in between linux distributions and this program uses 'diff' statements, this validation was added.
-This can change the results of some of the tests in cases where more the a failed command is tested.
-This extra validation can be removed by deleting the statements and conditions pertaining to the 'dif_bash' and 'dif_shell' variables in the file 'veridict.sh'.
+- In cases where the results involve stderr messages, several validations were added checking for equivalent statements in both files.
+Since these kinds of statements can be hard to match in between shell terminals and linux distributions - plus this program uses 'diff' statements, these validations were added.
+These can change the results of some of the tests in cases where more the a failed command is tested.
+These extra validations can be removed by deleting the statements and conditions pertaining to the 'dif_*_bash' and 'dif_*_shell' variables in the file 'veridict.sh'.
 
 Thanks!
