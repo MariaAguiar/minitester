@@ -33,6 +33,6 @@ Final considerations:
 - In cases where the results involve stderr messages, several validations were added checking for equivalent statements in both files.
 Since these kinds of statements can be hard to match in between shell terminals and linux distributions - plus this program uses 'diff' statements, these validations were added.
 These can change the results of some of the tests in cases where more the a failed command is tested.
-These extra validations can be removed by deleting the statements and conditions pertaining to the 'dif_*_bash' and 'dif_*_shell' variables in the file 'veridict.sh'.
+Such extra validations can be removed by deleting the statements and conditions pertaining to the 'dif_*_bash' and 'dif_*_shell' variables in the file 'veridict.sh'.
 
 Thanks!
