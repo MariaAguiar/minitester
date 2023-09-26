@@ -15,9 +15,20 @@ directory='out_minishell'
 prefix1="[?2004h"
 prefix2="[?2004l"
 
+# Reading results
+readfile()
+{
+    read="$1"
+
+    while read line; do
+	echo $line
+    done < ${read}
+}
+
 # Comparing results
 veridict()
 {
+    count=0
     n=1
     while read line; do
     	if [[ "${#line}" > 0 ]]; then
@@ -26,13 +37,24 @@ veridict()
 			if diff -q out_bash/${res} ${directory}/${res} > /dev/null 2>&1; then
 				echo -ne "Test ${n}: ${GREEN} [OK]${RESET}"
 				echo ""
+				count=$((count+1))
 			elif [[ "${line}" = *";"* ]]; then
 				echo -ne "Test ${n}: ${GREEN} [OK]${RESET}"
 				echo ""
 			else
-				echo -ne "Test ${n}: ${RED} [KO]${RESET}"
+				echo -e "Test ${n}: ${RED} [KO]${RESET}"
+				echo ""
+				echo "_____________________________"
+				echo -e "${GREEN}Test ${n}:${RESET}"
+				echo $(cat test_list/test${n})
+				echo -e "${GREEN}Bash: ${RESET}"
+				readfile "out_bash/res${n}"
+				echo -e "${GREEN}Mini: ${RESET}"
+				readfile "out_minishell/res${n}"
+				echo "_____________________________"
 				echo ""
 			fi
+			echo "${count}/${n}"
 			n=$((n+1))
         fi
     done < tests.txt
