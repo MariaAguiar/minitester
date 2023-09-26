@@ -1,66 +1,222 @@
-cd ../../../../../..
-cd /home/user42/
-cd $HOME/Bureau
-unset HOME
-export HOME= ; cd
-cd too many arguments
-cd ./path_not_found
-cd -
-cd home/.. com CDPATH definido como /
-cd home/dir com CDPATH definido como /
-CD. com CDPATH definido
-CD .. com CDPATH definido
-env então exporte então env
-cd random_cmd ; echo $?
-./file_that_is_not_an_executable
+""
+"" | ""
+(|)
+..
+|
+$LESS$VAR
+$SHLVL
+$test
+$test | $test
+$test && echo $?
+$test || echo $?
+>a ls >b >>c >d
+>a ls <machin >>c >d
+/bin/echo bonjour
+(cat lonely)
+>|cat
+cat lonely
+cat lonely *
+cat lonely **
+cat lonely $test*
 cat bla
+cat lonely | clear | echo 5
+cat lonely || echo $?
+((cat lonely || echo $? > erro) | ls) && cat erro
+cat lonely && echo $? | > test
+(cat echo 5)
+cat lonely | (echo 5)
+cat echo 5 
+cat *.h | grep struct > structs_file && echo "_STRUCT LIST:" >> structs_file && sort structs_file > sorted_structs && cat sorted_structs && rm *structs*
+cat lonely|(ls)
+cat lonely | ls && cat lonely | ls
+cat magic
+cat << magic > magic
+cat Makefile | grep pr | head -n 5 | cd file_not_exit
+cat Makefile | grep pr | head -n 5 | hello
+cat *test
+cat < test
+cat test
+cat test**
+cat test$*
+cd ""
+cd -
+cd ../../../../../..
+CD .
+CD ..
+cd $HOME/Bureau
+cd $vari
+cd $vari ""
+cd /home/..
+cd /home/dir
+cd /home/user42/
+cd ./path_not_found
+cd random_cmd && echo $?
+cd too many arguments
+(clear)
+clear | $test
+clear < results
+clear > results
+diff test test2
+echo $*
+echo $>?
+echo $OLDPWD && cd $OLDPWD && echo $OLDPWD && cd $OLDPWD && echo $OLDPWD
+echo $PATH | wc -l | grep 1 | echo $? | grep 0
+echo $PWD >> test1 >> test2 > test1
+(echo $test) && echo $? > test3
+echo "$tests" "Makefile"
+echo "$tests""Makefile"
+echo "$tests"Makefile
+echo $USER$var\$USER$USER\$USERtest$USER
+echo $var bonjour
+echo "12\""
+echo 2 > out1 >> out2
+echo 2 >> out1 > out2
+(echo 5)
+echo 5 
+(echo 5 cat)
+echo 5 cat
+echo 5 | (cat)
+echo\ a
+echo "'abc'"
+echo '"abc"'
+echo a"hey | ls
+echo a"hey" | ls
+echo a"hey"|ls
+echo a"hey|ls
+echo "bip | bip ><"
+echo "" bonjour
+echo bonjour > $test
+echo bonjour && ls
+echo bonjour > "test 1"
+echo "''" | grep ""
+echo "hey" | ls
+echo "hey" | ls
+echo "hey"|ls
+echo "hey|ls
+echo -n
+echo -n ""
+(((echo -n 4) && echo 2))
+((echo -n 4) && echo 2)
+echo -nnm "" | wc -l | grep 1
+echo -nnn "" | wc -l | grep 0 | wc -l
+echo -n "" | wc -l | grep 0 | wc -l
+echo "" -n | wc -l | grep 1
+echo "\s" && echo "\\s"
+echo test|
+echo test|>
+echo test|>cat
+echo test|cat
+echo test|cat>
+echo test > file test1
+echo "" | wc -l | grep 1
+env ""
+env $vari
+env > test
+env > test2
+env -u HOME
+env -u PATH
+env -u PATH | grep PATH
+env -u PATH | grep PATH > test1 && env | grep PATH > test2 && diff test1 test2
+env -u *PWD
+exit
+exit 1 exit
+exit | echo $? > test
+exit exit 1
+exit << magic
+export ""
+export ($test)
+(export $test) && export
+(export $test) && export > test1 && unset test && export > test2 && diff test1 test2
+export $test && export > test1 && unset test && export > test2 && diff test1 test2
+export $var
+export $var=test
+export $var=test && export $var
+export "" . : , ! \\ + = - _ _a
+export  a127  a=
+export  a127  a= " "
+export a=a b=b c=c d=d e=e && echo "$a "$b" $c $d" "$e" && unset a b c d e
+export ""  && unset ""
+export ...cookie? $OLDPWD
+export cookie OLDPWD
+(export (echo -n $test))
+export env
+export | grep cookie > test
+export | grep OLDPWD >> test
+export HOME= && cd
+export loop='bonjour$loop' && echo $loop
+export test=123\" && echo $test
+export test=123\\ && echo $test
+export test=123\' && echo $test && echo $test
+export test1="export test2=test3" && $test1 && echo $test2
+export "" test=a
+export test=a && echo $test
+export test="env | grep OLDPWD" && $test
+export test="exit" && ($test) && echo $?
+(export test="exit 1123a" && ($test)) || echo $?
+(export test="exit 1224" && ($test)) || echo $?
+(export test="exit 1224a" && ($test)) || echo $?
+export test="  foo    bar  " && echo $test
+export test=" foo   bar " && echo """$test"""
+export test=" foo   bar " && echo ""$test""
+export test=" foo   bar " && echo "$test"
+export test="  foo    bar  " && echo "ab"$test
+export test="  foo    bar  " && echo ab$test
+export test=" foo   bar " && echo ab"$test" | cat -e
+export "test=ici"=coucou && echo $test
+export var=a && export $var=test && echo $var $a
+export var=at && c$var Makefile
+export var="cat Makefile | grep >" && echo $var
+export var então export var = teste
+export var= s\ -la && l$var
+export var="  truc"&& echo $var
+export var="truc  "&& echo $var | cat -e
+>file
 file_name
+./file_that_is_not_an_executable
+ls *
+ls bonjour && echo $?
+(ls)|cat
+(ls|)cat
+ls(|)cat
+ls | exit
+<< magic wc
 not_cmd
+not_cmd bonjour > salut
+< potato cd $PWD
+pwd && cd . && (pwd && cd .. && pwd) && pwd && cd $OLDPWD && pwd && cd $PWD
+(pwd && cd .. && pwd) && pwd && cd .
+sort -r << test > potato
+sort t* > test
+test|
+>test|cat
+test|cat
+test|cat>
+> test | echo blabla
+(unset $HOME) && env
+unset "" . : , ! \\ + = - _ _a
+unset a*
+unset  ...cookie? ""
+unset HOME
+unset / -n
+unset PWD
+unset "" test
+unset test && $test
+unset test && (export test="" && export > test1) && export $test > test2 && diff test1 test2
+unset test && export test="" && export > test1 && export $test > test2 && diff test1 test2
+unset var
+export HOME= ; cd
+cd random_cmd ; echo $?
 export test=a ; echo $test
 ls bonjour ; echo $?
 export var=a ; export $var=test ; echo $var $a
-export $var=test
 export $var=test ; export $var
-export var então export var = teste
-export "" test=a
-$SHLVL
-""
 echo "\s" ; echo "\\s"
-echo "12\""
-echo "bip | bip ><"
-echo $USER$var\$USER$USER\$USERtest$USER
 echo bonjour \; ls
-$LESS$VAR
-..
-echo '"abc"'
-echo "'abc'"
-echo "" bonjour
-echo\ a
-export ""  and unset ""
 export "test=ici"=coucou ; echo $test
 export var="cat Makefile | grep >" ; echo $var
-cat Makefile | grep pr | head -n 5 | cd file_not_exit
-cat Makefile | grep pr | head -n 5 | hello
-ls | exit
 > test | echo blabla; rm test
->a ls >b >>c >d
->a ls <machin >>c >d     avec machin n'exite pas
->file
-cat < test
-echo 2 > out1 >> out2
-echo 2 >> out1 > out2
-echo bonjour > "test 1"
-echo test > file test1
-not_cmd bonjour > salut
-ctrl-\
-ctrl-C
 export var="  truc"; echo $var
 export var="truc  "; echo $var | cat -e
-echo "$tests""Makefile"
-echo "$tests"Makefile
-echo "$tests" "Makefile"
-echo $var bonjour
-export $var
 export test=123\" ; echo $test
 export test=123\\ ; echo $test
 export test=123\' ; echo $test ; echo $test
@@ -74,11 +230,4 @@ export test=" foo   bar " ; echo """$test"""
 export var= s\ -la ; l$var
 export var=at ; c$var Makefile
 export loop='bonjour$loop' ; echo $loop
-|
-echo bonjour > $test
 unset PATH ; ls
-unset "" test
-unset PWD
-unset var
-/bin/echo bonjour
-exit\
