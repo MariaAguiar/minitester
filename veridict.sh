@@ -44,15 +44,17 @@ veridict()
 			else
 				echo -e "Test ${n}: ${RED} [KO]${RESET}"
 				echo ""
-				echo "_____________________________"
-				echo -e "${GREEN}Test ${n}:${RESET}"
-				echo $(cat test_list/test${n})
-				echo -e "${GREEN}Bash: ${RESET}"
-				readfile "out_bash/res${n}"
-				echo -e "${GREEN}Mini: ${RESET}"
-				readfile "out_minishell/res${n}"
-				echo "_____________________________"
-				echo ""
+				if [[ $(cat "test_list/test${n}") != *"env"* && $(cat "test_list/test${n}") != *"export"* && $line != *"*"* ]]; then
+					echo "_____________________________"
+					echo -e "${GREEN}Test ${n}:${RESET}"
+					echo $(cat test_list/test${n})
+					echo -e "${GREEN}Bash: ${RESET}"
+					readfile "out_bash/res${n}"
+					echo -e "${GREEN}Mini: ${RESET}"
+					readfile "out_minishell/res${n}"
+					echo "_____________________________"
+					echo ""
+				fi
 			fi
 			echo "${count}/${n}"
 			n=$((n+1))

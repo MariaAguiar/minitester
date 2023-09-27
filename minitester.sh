@@ -15,23 +15,10 @@ clean_test()
     mini=$2
     touch "${dir}/${mini}"
     while read -r line; do
-		line=$(echo "$line" | tr -cd '[:print:]')
-		while [[ "${line}" = "$prefix2"* || "${line}" = "$prefix1"* ]]; do
-			if [[ "${line}" = "$prefix2"* ]]; then
-				line=${line#"$prefix2"}
-			elif [[ "${line}" = "$prefix1"* ]]; then
-				line=${line#"$prefix1"}
-			fi
-		done
-		beg="${line:0:1}"
-		if [[ "${#line}" > 0 ]]; then
-			if [[ "${line}" = *"spawn"* ]]; then
-				continue
-			elif [[ $beg == "$" ]]; then
-				touch "${dir}/${mini}"
-			else
-				echo "${line}" >> "${dir}/${mini}" 2>&1;
-			fi
+		if [[ "${line}" = "minishell"* ]]; then
+			continue ;
+		else
+			echo "${line}" >> "${dir}/${mini}" 2>&1;
 		fi
     done < $mini
 }
@@ -54,10 +41,9 @@ do_tests()
 			dest="minishell"
 			sed "s|${orig}|${dest}|g" "$bash" > new_bash
 			mv new_bash "$bash"
-			#expect minishell.exp "${test}${n}" > "$bash" 
 		fi
 		clean_test "out_bash" "$bash"
-		expect minishell.exp "${test}${n}" > $mini 2>&1;
+		../minishell < "${test}${n}" > $mini 2>&1;
 		clean_test "out_minishell" "$mini"
 		i=$((i+1))
 		n=$((n+1))
