@@ -15,7 +15,7 @@ clean_test()
     mini=$2
     touch "${dir}/${mini}"
     while read -r line; do
-		if [[ "${line}" = "minishell"* ]]; then
+		if [[ "${line}" = "minishell>$ "* ]]; then
 			continue ;
 		else
 			echo "${line}" >> "${dir}/${mini}" 2>&1;
@@ -34,14 +34,14 @@ do_tests()
 		mini="res"
 		mini+="$n"
 		status=-1
-		bash ./"${test}${n}" > $bash 2>/dev/null
-		if [ $(cat $bash | wc -c) -eq 0 ]; then
-			bash ./"${test}${n}" > $bash 2>&1 > /dev/null
-			orig="./${test}${n}: line \([0-9]*\)"
+		bash < "${test}${n}" > $bash 2>&1
+		#if [ $(cat $bash | wc -c) -eq 0 ]; then
+		#	bash < "${test}${n}" > $bash 2>&1
+			orig="bash: line \([0-9]*\)"
 			dest="minishell"
 			sed "s|${orig}|${dest}|g" "$bash" > new_bash
 			mv new_bash "$bash"
-		fi
+		#fi
 		clean_test "out_bash" "$bash"
 		../minishell < "${test}${n}" > $mini 2>&1;
 		clean_test "out_minishell" "$mini"

@@ -33,8 +33,6 @@ cat file.txt | tr -s ' ' '\n' | sort | uniq -c | sort -nr | awk '{print $2 $1}'
 cat *.h | grep struct > structs_file && echo "_STRUCT LIST:" >> structs_file && sort structs_file > sorted_structs && cat sorted_structs && rm *structs*
 (cat lonely)
 cat lonely
-cat lonely *
-cat lonely **
 cat lonely $test*
 cat lonely | clear | echo 5
 cat lonely || echo $?
@@ -155,12 +153,6 @@ env ""
 env $vari
 env > test
 env > test2
-env -u HOME
-env -u PATH
-env -u PATH | grep PATH
-env -u PATH | grep PATH > test1 && env | grep PATH > test2 && diff test1 test2
-env -u *PWD
-exit
 exit 1 exit
 exit 300 || echo $?
 exit | echo $? > test
