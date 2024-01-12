@@ -10,7 +10,7 @@ Instructions:
 - Place the 'minitester' folder next to your minishell executable
 - Enter the 'minitester' folder and run:
 chmod 777 ./minitester.sh
-bash ./minitester.sh [bonus]
+bash ./minitester.sh [bonus] [exact]
 
 
 Evaluating the results:
@@ -24,6 +24,8 @@ Please, see this program as an auxiliar program and not as a means of final test
 Further usage:
 - You can add more tests by adding new lines to the "tests.txt" file within the 'minitester' folder.
 - The optional bonus rule avoids the separation of prompts with chained commands (prompts containing the sequences "&&", "||" and/or ";") so that these can be tested normally for people doing bonuses
+- The optional exact rule takes into account if your minishell has the same exact error messages as bash.
+  Note that the "bash" word is substituted my "minishell" in the list of bash results so as to account for this.
 - At the time of writing, prompts containing parenthesis have not been properly verified
 
 
