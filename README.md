@@ -27,12 +27,4 @@ Further usage:
 - At the time of writing, prompts containing parenthesis have not been properly verified
 
 
-Final considerations:
-- In cases where results involve stderr messages, preference was given to expect's messaging system over bash's.
-This was done, both due to expect's constraints, and to allow results to match up in diff statements whenever standard errors are involved.
-This also means that you won't be able to compare your shell's own messaging system against the original bash when running 'minitester'.
-- A validation was added to avoid failing scores in tests containing the character ';'.
-This was done to avoid mismatching results, as the project guides state that this character is not to be interpreted by your minishell.
-If needed, the same can be removed by deleting the 'elif' condition and corresponding statements in 'veridict.sh'.
-
 Thanks!
