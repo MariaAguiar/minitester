@@ -2,8 +2,6 @@
 Output tester for the 42 Common Core 'minishell' project | Made to help during the development stages | On going
 
 Prerequisites:
-- Have 'expect' installed in your linux distribution. If not, run:
-sudo apt install expect
 - Your shell executable must have functional prompt capturing and processing capabilities
 - Your shell must be named 'minishell' and have a readline prompt containing the sequence '$ ' (dollar sign + space)
 - Your executable must be compiled without -fsanitize statements, as it would alter 'minitesters' results
