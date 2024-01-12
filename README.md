@@ -3,14 +3,14 @@ Output tester for the 42 Common Core 'minishell' project | Made to help during t
 
 Prerequisites:
 - Your shell executable must have functional prompt capturing and processing capabilities
-- Your shell must be named 'minishell' and have a readline prompt containing the sequence '$ ' (dollar sign + space)
 - Your executable must be compiled without -fsanitize statements, as it would alter 'minitesters' results
 
 
 Instructions:
 - Place the 'minitester' folder next to your minishell executable
 - Enter the 'minitester' folder and run:
-bash ./minitester.sh
+chmod 777 ./minitester.sh
+bash ./minitester.sh [bonus]
 
 
 Evaluating the results:
@@ -23,8 +23,8 @@ Please, see this program as an auxiliar program and not as a means of final test
 
 Further usage:
 - You can add more tests by adding new lines to the "tests.txt" file within the 'minitester' folder.
-  Please add them before the last line of the file (containing the 'exit\' sequence)
-- New tests function properly in one-line format. At the time of writing multiline test format has not been addressed
+- The optional bonus rule avoids the separation of prompts with chained commands (prompts containing the sequences "&&", "||" and/or ";") so that these can be tested normally for people doing bonuses
+- At the time of writing, prompts containing parenthesis have not been properly verified
 
 
 Final considerations:

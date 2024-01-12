@@ -12,8 +12,6 @@ RESET='\033[0m'
 #Gathering needed variables
 filename='res.txt'
 directory='out_minishell'
-prefix1="[?2004h"
-prefix2="[?2004l"
 
 # Reading results
 readfile()
@@ -21,7 +19,7 @@ readfile()
     read="$1"
 
     while read line; do
-	echo $line
+		echo $line
     done < ${read}
 }
 
@@ -34,13 +32,10 @@ veridict()
     	if [[ "${#line}" > 0 ]]; then
 			local res="res"
 			res+="$n"
-			if diff -q out_bash/${res} ${directory}/${res} > /dev/null 2>&1; then
+			if diff -q out_bash/${res} ${directory}/${res} 2>/dev/null; then
 				echo -ne "Test ${n}: ${GREEN} [OK]${RESET}"
 				echo ""
 				count=$((count+1))
-			elif [[ "${line}" = *";"* ]]; then
-				echo -ne "Test ${n}: ${GREEN} [OK]${RESET}"
-				echo ""
 			else
 				echo -e "Test ${n}: ${RED} [KO]${RESET}"
 				echo ""
@@ -63,7 +58,5 @@ veridict()
 }
 
 # Getting the results!
-chmod +rwx $directory;
-chmod +rwx out_bash;
 veridict;
 exit;

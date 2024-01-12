@@ -3,19 +3,18 @@
 [ -e out_bash ] && rm -rf out_bash
 [ -e out_minishell ] && rm -rf out_minishell
 [ -e test_list ] && rm -rf test_list
+
 mini="res"
-prefix1="[?2004h"
-prefix2="[?2004l"
 i=0
 n=1
-
+prompt=$(bash ./gen_prompt.sh);
 clean_test()
 {
     dir=$1
     mini=$2
     touch "${dir}/${mini}"
     while read -r line; do
-		if [[ "${line}" = "minishell>$ "* ]]; then
+		if [[ "${line}" = "${prompt}"* ]]; then
 			continue ;
 		else
 			echo "${line}" >> "${dir}/${mini}" 2>&1;
@@ -52,11 +51,11 @@ do_tests()
 	done
 }
 
-bash ./gen_tests.sh
+bash ./gen_tests.sh "$@"
 mkdir out_minishell
 mkdir out_bash
-chmod +rwx out_bash;
-chmod +rwx out_minishell;
+chmod +rw out_bash;
+chmod +rw out_minishell;
 do_tests;
 bash ./veridict.sh
 exit;
