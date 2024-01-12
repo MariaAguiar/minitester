@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-flag=0;
+filename="tests.txt";
 for i in "$@"; do
 	if [[ $i == "bonus" ]]; then
-		flag=1;
+		filename="tests_bonus.txt";
 	fi
 done
 
@@ -17,12 +17,7 @@ create_tests()
 		local test='test'
 		test+="$n"
 		line2=$line;
-		echo $line >> $test 2>&1;
-		if [[ $flag == 0 ]]; then
-			sed -i 's/&&/\n/g' $test
-			sed -i 's/||/\n/g' $test
-			sed -i 's/;/\n/g' $test
-		fi
+		echo $line >> $test;
 		mv $test $directory
 		n=$((n+1))
 
@@ -31,7 +26,6 @@ create_tests()
 }
 
 # Creating the tests
-filename='tests.txt'
 directory='test_list'
 mkdir $directory
 chmod +rwx $directory;

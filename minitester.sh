@@ -7,6 +7,14 @@
 mini="res"
 i=0
 n=1
+
+flag=0;
+for i in "$@"; do
+	if [[ $i == "exact" ]]; then
+		flag=1;
+	fi
+done
+
 prompt=$(bash ./gen_prompt.sh);
 clean_test()
 {
@@ -17,7 +25,7 @@ clean_test()
 		if [[ "${line}" = "${prompt}"* ]]; then
 			continue ;
 		else
-			echo "${line}" >> "${dir}/${mini}" 2>&1;
+			echo "${line}" >> "${dir}/${mini}";
 		fi
     done < $mini
 }
@@ -32,17 +40,21 @@ do_tests()
 		bash+="$n"
 		mini="res"
 		mini+="$n"
-		status=-1
-		bash < "${test}${n}" > $bash 2>&1
-		#if [ $(cat $bash | wc -c) -eq 0 ]; then
-		#	bash < "${test}${n}" > $bash 2>&1
-			orig="bash: line \([0-9]*\)"
-			dest="minishell"
-			sed "s|${orig}|${dest}|g" "$bash" > new_bash
-			mv new_bash "$bash"
-		#fi
+		if [[ $flag == 0 ]]; then
+			bash < "${test}${n}" > $bash 2>/dev/null
+		else
+			bash < "${test}${n}" > $bash 2>&1
+		fi
+		orig="bash: line \([0-9]*\)"
+		dest="minishell"
+		sed "s|${orig}|${dest}|g" "$bash" > new_bash
+		mv new_bash "$bash"
 		clean_test "out_bash" "$bash"
-		../minishell < "${test}${n}" > $mini 2>&1;
+		if [[ $flag == 0 ]]; then
+			../minishell < "${test}${n}" > $mini 2>/dev/null
+		else
+			../minishell < "${test}${n}" > $mini 2>&1
+		fi
 		clean_test "out_minishell" "$mini"
 		i=$((i+1))
 		n=$((n+1))
@@ -57,5 +69,5 @@ mkdir out_bash
 chmod +rw out_bash;
 chmod +rw out_minishell;
 do_tests;
-bash ./veridict.sh
+bash ./veridict.sh "$@"
 exit;

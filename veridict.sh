@@ -9,6 +9,13 @@ CYAN='\033[1;36m'
 UNDERLINE='\033[4m'
 RESET='\033[0m'
 
+tests="tests.txt";
+for i in "$@"; do
+	if [[ $i == "bonus" ]]; then
+		tests="tests_bonus.txt";
+	fi
+done
+
 #Gathering needed variables
 filename='res.txt'
 directory='out_minishell'
@@ -32,7 +39,7 @@ veridict()
     	if [[ "${#line}" > 0 ]]; then
 			local res="res"
 			res+="$n"
-			if diff -q out_bash/${res} ${directory}/${res} 2>/dev/null; then
+			if diff -q out_bash/${res} ${directory}/${res} 2>&1 > /dev/null; then
 				echo -ne "Test ${n}: ${GREEN} [OK]${RESET}"
 				echo ""
 				count=$((count+1))
@@ -42,7 +49,13 @@ veridict()
 				if [[ $(cat "test_list/test${n}") != *"env"* && $(cat "test_list/test${n}") != *"export"* && $line != *"*"* ]]; then
 					echo "_____________________________"
 					echo -e "${GREEN}Test ${n}:${RESET}"
-					echo $(cat test_list/test${n})
+					subcount=0
+					while read fileline; do
+						subcount=$((subcount+1))
+						if [[ $subcount == $n ]]; then
+							echo $fileline;
+						fi
+					done < $tests
 					echo -e "${GREEN}Bash: ${RESET}"
 					readfile "out_bash/res${n}"
 					echo -e "${GREEN}Mini: ${RESET}"
@@ -54,7 +67,7 @@ veridict()
 			echo "${count}/${n}"
 			n=$((n+1))
         fi
-    done < tests.txt
+    done < $tests
 }
 
 # Getting the results!
