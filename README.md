@@ -3,7 +3,7 @@ Output tester for the 42 Common Core 'minishell' project | Made to help during t
 
 Prerequisites:
 - Your shell executable must have functional prompt capturing and processing capabilities
-- Your executable must be compiled without -fsanitize statements, as it would alter 'minitesters' results
+- Your executable must be compiled without -fsanitize statements, as it would alter minitester's results
 
 
 Instructions:
@@ -24,7 +24,7 @@ Please, see this program as an auxiliar program and not as a means of final test
 Further usage:
 - You can add more tests by adding new lines to the "tests.txt" file within the 'minitester' folder.
 - The optional bonus rule runs the "tests_bonus.txt" file instead of "tests.txt" for people doing bonuses.
-- The optional exact rule takes into account if your minishell has the same exact error messages as bash.
+- The optional exact rule takes into account if your minishell has the exact same error messages as bash.
   Note that the "bash" word is substituted my "minishell" in the list of bash results so as to account for this.
 - At the time of writing, prompts containing parenthesis have not been properly verified
 
