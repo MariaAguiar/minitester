@@ -9,8 +9,12 @@ Prerequisites:
 Instructions:
 - Place the 'minitester' folder next to your minishell executable
 - Enter the 'minitester' folder and run:
-chmod 777 ./minitester.sh
+chmod 777 ./minitester.sh;
 bash ./minitester.sh [bonus] [exact]
+- It takes a few seconds to get the output. More than a minute of waiting can mean an error occured.
+  Depending on the stage of development of your minishell, it is possible for the minitester to get stuck on certain tests.
+  If this happens, abort the process and either correct that scenario, or delete the corresponding test line in the tests file before running minitester again.
+  In either case, look for the "res[test number]" file left in the minitester folder and go to the corresponding tested file line to get the corresponding test.
 
 
 Evaluating the results:
